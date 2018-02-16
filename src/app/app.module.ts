@@ -19,6 +19,11 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuard } from "./services/auth/auth-guard.service";
+import { GuestGuard } from "./services/auth/guest-guard.service";
+import { UserService } from './services/auth/user.service';
+import { AdminAuthGuard } from "./services/auth/admin-auth-guard.service";
 
 
 @NgModule({
@@ -41,12 +46,14 @@ import { LoginComponent } from './login/login.component';
             { path: '', component: HomeComponent },
             { path: 'products', component: ProductsComponent },
             { path: 'shopping-cart', component: ShoppingCartComponent },
-            { path: 'check-out', component: CheckOutComponent },
-            { path: 'order-success', component: OrderSuccessComponent },
-            { path: 'my-orders', component: MyOrdersComponent },
-            { path: 'login', component: LoginComponent },
-            { path: 'admin/products', component: AdminProductsComponent },
-            { path: 'admin/orders', component: AdminOrdersComponent },
+
+            { path: 'login', component: LoginComponent, canActivate: [ GuestGuard ] },
+
+            { path: 'check-out', component: CheckOutComponent, canActivate: [ AuthGuard ] },
+            { path: 'order-success', component: OrderSuccessComponent, canActivate: [ AuthGuard ] },
+            { path: 'my-orders', component: MyOrdersComponent, canActivate: [ AuthGuard ] },
+            { path: 'admin/products', component: AdminProductsComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
+            { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
         ]),
         NgbModule.forRoot(),
         // firebase init
@@ -54,7 +61,13 @@ import { LoginComponent } from './login/login.component';
         AngularFireDatabaseModule,
         AngularFireAuthModule
     ],
-    providers: [],
+    providers: [
+        AuthService,
+        UserService,
+        AuthGuard,
+        AdminAuthGuard,
+        GuestGuard
+    ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule {
