@@ -24,6 +24,11 @@ import { AuthGuard } from "./services/auth/auth-guard.service";
 import { GuestGuard } from "./services/auth/guest-guard.service";
 import { UserService } from './services/auth/user.service';
 import { AdminAuthGuard } from "./services/auth/admin-auth-guard.service";
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './services/categories/category.service';
+import { FormsModule } from "@angular/forms";
+import { ProductService } from "./services/products/product.service";
+import { CustomFormsModule } from 'ng2-validation';
 
 
 @NgModule({
@@ -38,10 +43,13 @@ import { AdminAuthGuard } from "./services/auth/admin-auth-guard.service";
         MyOrdersComponent,
         AdminProductsComponent,
         AdminOrdersComponent,
-        LoginComponent
+        LoginComponent,
+        ProductFormComponent
     ],
     imports: [
         BrowserModule,
+        FormsModule,
+        CustomFormsModule,
         RouterModule.forRoot([
             { path: '', component: HomeComponent },
             { path: 'products', component: ProductsComponent },
@@ -52,6 +60,8 @@ import { AdminAuthGuard } from "./services/auth/admin-auth-guard.service";
             { path: 'check-out', component: CheckOutComponent, canActivate: [ AuthGuard ] },
             { path: 'order-success', component: OrderSuccessComponent, canActivate: [ AuthGuard ] },
             { path: 'my-orders', component: MyOrdersComponent, canActivate: [ AuthGuard ] },
+            { path: 'admin/products/new', component: ProductFormComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
+            { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
             { path: 'admin/products', component: AdminProductsComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
             { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
         ]),
@@ -66,7 +76,9 @@ import { AdminAuthGuard } from "./services/auth/admin-auth-guard.service";
         UserService,
         AuthGuard,
         AdminAuthGuard,
-        GuestGuard
+        GuestGuard,
+        CategoryService,
+        ProductService
     ],
     bootstrap: [ AppComponent ]
 })

@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --aot=false",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -26,6 +26,7 @@
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
     "firebase": "^4.2.0",
+    "ng2-validation": "^4.2.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

@@ -6,6 +6,10 @@
     "module": "es2015",
     "types": []
   },
+  "include": [
+    "../src/*",
+    "../node_modules/angular-4-data-table/**/*.ts"
+  ],
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
