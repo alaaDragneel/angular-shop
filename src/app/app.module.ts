@@ -29,6 +29,8 @@ import { CategoryService } from './services/categories/category.service';
 import { FormsModule } from "@angular/forms";
 import { ProductService } from "./services/products/product.service";
 import { CustomFormsModule } from 'ng2-validation';
+import { ProductsFilterComponent } from './shared/products-filter/products-filter.component';
+import { ProductsCardComponent } from './shared/products-card/products-card.component';
 
 
 @NgModule({
@@ -44,14 +46,16 @@ import { CustomFormsModule } from 'ng2-validation';
         AdminProductsComponent,
         AdminOrdersComponent,
         LoginComponent,
-        ProductFormComponent
+        ProductFormComponent,
+        ProductsFilterComponent,
+        ProductsCardComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         CustomFormsModule,
         RouterModule.forRoot([
-            { path: '', component: HomeComponent },
+            { path: '', component: ProductsComponent },
             { path: 'products', component: ProductsComponent },
             { path: 'shopping-cart', component: ShoppingCartComponent },
 
