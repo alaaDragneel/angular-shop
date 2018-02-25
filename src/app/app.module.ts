@@ -31,6 +31,8 @@ import { ProductService } from "./services/products/product.service";
 import { CustomFormsModule } from 'ng2-validation';
 import { ProductsFilterComponent } from './shared/products-filter/products-filter.component';
 import { ProductsCardComponent } from './shared/products-card/products-card.component';
+import { ShoppingCartService } from "./services/shopping-cart/shopping-cart.service";
+import { ProductQuantityComponent } from './shared/product-quantity/product-quantity.component';
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { ProductsCardComponent } from './shared/products-card/products-card.comp
         LoginComponent,
         ProductFormComponent,
         ProductsFilterComponent,
-        ProductsCardComponent
+        ProductsCardComponent,
+        ProductQuantityComponent
     ],
     imports: [
         BrowserModule,
@@ -82,7 +85,8 @@ import { ProductsCardComponent } from './shared/products-card/products-card.comp
         AdminAuthGuard,
         GuestGuard,
         CategoryService,
-        ProductService
+        ProductService,
+        ShoppingCartService
     ],
     bootstrap: [ AppComponent ]
 })
