@@ -13,7 +13,12 @@ import { AppShoppingCart } from "../../../shared/models/app-shopping-cart";
 })
 export class ShippingFormComponent implements OnInit, OnDestroy {
     @Input('cart') cart: AppShoppingCart;
-    shipping = {};
+    shipping = {
+        name: '',
+        addressLine1: '',
+        addressLine2: '',
+        city: ''
+    };
     subscription: Subscription;
     userId: string;
 
