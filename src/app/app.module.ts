@@ -33,6 +33,9 @@ import { ProductsFilterComponent } from './shared/products-filter/products-filte
 import { ProductsCardComponent } from './shared/products-card/products-card.component';
 import { ShoppingCartService } from "./services/shopping-cart/shopping-cart.service";
 import { ProductQuantityComponent } from './shared/product-quantity/product-quantity.component';
+import { OrderService } from "./services/order/order.service";
+import { ShoppingCartSummeryComponent } from './shopping-cart-summery/shopping-cart-summery.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
 
 @NgModule({
@@ -51,7 +54,9 @@ import { ProductQuantityComponent } from './shared/product-quantity/product-quan
         ProductFormComponent,
         ProductsFilterComponent,
         ProductsCardComponent,
-        ProductQuantityComponent
+        ProductQuantityComponent,
+        ShoppingCartSummeryComponent,
+        ShippingFormComponent
     ],
     imports: [
         BrowserModule,
@@ -65,7 +70,7 @@ import { ProductQuantityComponent } from './shared/product-quantity/product-quan
             { path: 'login', component: LoginComponent, canActivate: [ GuestGuard ] },
 
             { path: 'check-out', component: CheckOutComponent, canActivate: [ AuthGuard ] },
-            { path: 'order-success', component: OrderSuccessComponent, canActivate: [ AuthGuard ] },
+            { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [ AuthGuard ] },
             { path: 'my-orders', component: MyOrdersComponent, canActivate: [ AuthGuard ] },
             { path: 'admin/products/new', component: ProductFormComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
             { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [ AuthGuard, AdminAuthGuard ] },
@@ -86,7 +91,8 @@ import { ProductQuantityComponent } from './shared/product-quantity/product-quan
         GuestGuard,
         CategoryService,
         ProductService,
-        ShoppingCartService
+        ShoppingCartService,
+        OrderService
     ],
     bootstrap: [ AppComponent ]
 })
